@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AWS-ES-frontend';
+  title = 'AWS-ES-Song_Search';
 }
