@@ -64,11 +64,11 @@
       <div class="container">
         <div class="row">
           <div class="custom-control custom-radio" style="margin-right: 6%;">
-            <input id="lyricalsong" name="lyrics" type="radio" class="custom-control-input" checked="" required="">
+            <input id="lyricalsong" name="lyrics" type="radio" class="custom-control-input" [checked]="lyrics === 1" required="" value="1" (change)="searchLyrics(1)">
             <label class="custom-control-label" for="lyricalsong">Songs with Lyrics</label>
           </div>
           <div class="custom-control custom-radio" style="margin-right: 6%;">
-            <input id="nonlyricalsong" name="lyrics" type="radio" class="custom-control-input" required="">
+            <input id="nonlyricalsong" name="lyrics" type="radio" class="custom-control-input" [checked]="lyrics === 2" required="" value="2" (change)="searchLyrics(2)">
             <label class="custom-control-label" for="nonlyricalsong">Songs without Lyrics</label>
           </div>
           
@@ -77,18 +77,18 @@
       <div class="container">
         <div class="row">
           <div class="custom-control custom-radio" style="margin-right: 12%;">
-            <input id="song" name="name" type="radio" class="custom-control-input" checked="" required="">
-            <label class="custom-control-label" for="song">Song Name</label>
+            <input id="song" name="name" type="radio" class="custom-control-input" [checked]="name === 3" required="" value="3" (change)="searchSong(3)">
+            <label class="custom-control-label" for="song">Song Name</label>searchSong
           </div>
           <div class="custom-control custom-radio" style="margin-right: 12%;">
-            <input id="artist" name="name" type="radio" class="custom-control-input" required="">
+            <input id="artist" name="name" type="radio" class="custom-control-input" [checked]="name === 4" required="" value="4" (change)="searchSong(4)">
             <label class="custom-control-label" for="artist">Artist Name</label>
           </div>
           
         </div>
     </div>
   </div>
-    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="word" (input)="onSearchChange($event.target.value)">
     
   </div>
   <!-- Resources -->
