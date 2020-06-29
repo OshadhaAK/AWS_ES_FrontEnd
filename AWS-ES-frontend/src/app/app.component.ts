@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SearchService } from '../app/search.service'
 import { from } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
   isConnected = false;
   status: string;
 
-  constructor(private searchService: SearchService, private cd: ChangeDetectorRef) {
+  constructor(private searchService: SearchService, private cd: ChangeDetectorRef, private http: HttpClient) {
     this.isConnected = false;
   }
 
