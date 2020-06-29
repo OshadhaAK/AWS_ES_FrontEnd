@@ -10,7 +10,7 @@ export class SearchService {
   private client: Client;
 
   constructor() { 
-    this.connect()
+  
     if (!this.client) {
       this._connect();
     }
@@ -34,7 +34,22 @@ export class SearchService {
       body: 'hello grokonez!'
     });
   }
-  
+
+  fullTextSearch(_index, _type, _field, _queryText): any {
+    return this.client.search({
+      index: _index,
+      type: _type,
+      filterPath: ['hits.hits._source', 'hits.total', '_scroll_id'],
+      body: {
+        'query': {
+          'match_phrase_prefix': {
+            [_field]: _queryText,
+          }
+        }
+      },
+      '_source': ['song', 'mainArtist']
+    });
+  }
   
 }
 
