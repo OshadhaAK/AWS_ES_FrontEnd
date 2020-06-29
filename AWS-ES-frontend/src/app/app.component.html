@@ -94,14 +94,21 @@
   <!-- Resources -->
   
   <!-- Footer -->
-  <div class="col-md-12" style="margin-top: 5%;">
+  
+  <div class="col-md-12" style="margin-top: 5%;" *ngFor='let songSource of songSources'>
     <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
       <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-primary">World</strong>
-        <h3 class="mb-0">Featured post</h3>
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="stretched-link">Continue reading</a>
+        <h4 class="mb-0">{{songSource._source.song}}</h4>
+        <div class="mb-1 text-muted">{{songSource._source.mainArtist}}</div>
+      <br>
+        <p class="card-text mb-auto">Lyrics: {{songSource._source.lyrics}}</p>
+        <p class="card-text mb-auto">Music: {{songSource._source.music}}</p>
+        <p class="card-text mb-auto">Downloads: {{songSource._source.downloads}}</p>
+        <p class="card-text mb-auto">Visits: {{songSource._source.visits}}</p>
+        <a href="{{songSource._source.videoURI}}" target="_blank">Watch on Youtube</a>
+      <br>
+        <p class="card-text mb-auto">downloadFormat: {{songSource._source.downloadFormats}}</p>
+        <a href="javascript:void(0)" (click)='goToLink(songSource._source.url)'>Original url</a>
       </div>
       <div class="col-auto d-none d-lg-block">
         <img src="https://png.pngtree.com/element_our/sm/20180415/sm_5ad31d9b53530.jpg">

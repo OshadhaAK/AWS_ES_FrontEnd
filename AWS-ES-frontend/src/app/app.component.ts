@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
   nameSearch: any;
   lyricsSearch: any;
 
-  private static readonly INDEX = 'songs';
-  private static readonly TYPE = '';
+  private static INDEX :any;
+ 
  
   songSources: SongSource[];
   private queryText = '';
@@ -48,8 +48,14 @@ export class AppComponent implements OnInit {
   searchLyrics(entry) {
     this.lyrics = entry
     console.log(this.lyrics)
-    if(this.lyrics == 1){
+    if(this.lyrics == '1'){
+      AppComponent.INDEX = 'lyricalSongs'
 
+    }else if (this.lyrics == '2') {
+      AppComponent.INDEX = 'songs'
+    } else {
+      AppComponent.INDEX = ''
+      console.error('Incorrect Index');
     }
   }
 
@@ -62,13 +68,16 @@ export class AppComponent implements OnInit {
     else if (this.name == '4') {
       this.nameSearch = 'mainArtist'
     } else {
-      console.error('Incorrect Index');
+      this.nameSearch = ''
+      console.error('Incorrect name search');
     }
   }
 
-  // onSearchChange(searchValue) {
-  //   console.log(searchValue)
-  // }
+  goToLink(url: string){
+    window.open("http://"+url, "_blank");
+  }
+
+
   search($event) {
     if ($event.timeStamp - this.lastKeypress > 100) {
       this.queryText = $event.target.value;
