@@ -16,12 +16,12 @@ export class SearchService {
     }
   }
 
-  private connect() {
-    this.client = new Client({
-      host: 'http://localhost:9200',
-      log: 'trace'
-    });
-  }
+  // private connect() {
+  //   this.client = new Client({
+  //     host: 'http://localhost:9200',
+  //     log: 'trace'
+  //   });
+  // }
   private _connect() {
     this.client = new elasticsearch.Client({
       host: 'http://localhost:9200',
@@ -35,10 +35,9 @@ export class SearchService {
     });
   }
 
-  fullTextSearch(_index, _type, _field, _queryText): any {
+  fullTextSearch(_index, _field, _queryText): any {
     return this.client.search({
       index: _index,
-      type: _type,
       filterPath: ['hits.hits._source', 'hits.total', '_scroll_id'],
       body: {
         'query': {
@@ -47,7 +46,7 @@ export class SearchService {
           }
         }
       },
-      '_source': ['song', 'mainArtist']
+      '_source': ['downloadFormats', 'downloads', 'lyrics', 'mainArtist', 'music', 'song', 'url', 'videoURI', 'visits']
     });
   }
   

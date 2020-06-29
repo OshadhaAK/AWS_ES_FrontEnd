@@ -14,7 +14,8 @@ export class AppComponent implements OnInit {
   name: any;
   isConnected = false;
   status: string;
-
+  nameSearch: any;
+  lyricsSearch: any;
 
   private static readonly INDEX = 'songs';
   private static readonly TYPE = '';
@@ -47,11 +48,22 @@ export class AppComponent implements OnInit {
   searchLyrics(entry) {
     this.lyrics = entry
     console.log(this.lyrics)
+    if(this.lyrics == 1){
+
+    }
   }
 
   searchSong(entry) {
     this.name = entry
     console.log(this.name)
+    if(this.name == '3'){
+      this.nameSearch = 'song'
+    }
+    else if (this.name == '4') {
+      this.nameSearch = 'mainArtist'
+    } else {
+      console.error('Incorrect Index');
+    }
   }
 
   // onSearchChange(searchValue) {
@@ -62,8 +74,7 @@ export class AppComponent implements OnInit {
       this.queryText = $event.target.value;
       this.searchService.fullTextSearch(
         AppComponent.INDEX,
-        AppComponent.TYPE,
-        'mainArtist', this.queryText).then(
+        this.nameSearch, this.queryText).then(
           response => {
             this.songSources = response.hits.hits;
             console.log("response",response);
