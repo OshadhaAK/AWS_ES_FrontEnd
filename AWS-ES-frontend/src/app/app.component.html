@@ -88,7 +88,7 @@
         </div>
     </div>
   </div>
-    <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="word" (input)="onSearchChange($event.target.value)">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="word" (keyup.enter)="onSearchChange($event.target.value)" >
     
   </div>
   <!-- Resources -->
@@ -97,6 +97,8 @@
   <div class="col-md-12" style="margin-top: 5%;">
     <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
       <div class="col p-4 d-flex flex-column position-static">
+        <h3 class="col-md-12 text-center">Elasticsearch server status: {{status}}</h3>
+
         <strong class="d-inline-block mb-2 text-primary">World</strong>
         <h3 class="mb-0">Featured post</h3>
         <div class="mb-1 text-muted">Nov 12</div>
