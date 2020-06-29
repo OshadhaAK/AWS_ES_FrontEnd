@@ -49,6 +49,22 @@ export class SearchService {
       '_source': ['downloadFormats', 'downloads', 'lyrics', 'mainArtist', 'music', 'song', 'url', 'videoURI', 'visits']
     });
   }
+
+  fullnameSearch(_index, _field, _queryText): any {
+    return this.client.search({
+      index: _index,
+      filterPath: ['hits.hits._source', 'hits.total', '_scroll_id'],
+      body: {
+        'query': {
+          'match_phrase_prefix': {
+            [_field]: _queryText,
+          }
+        }
+      },
+      '_source': ['lyric_id','title','title_sinhala','title_english','artist','music','melody','lyrics_author','image_url','video_url','youtube_video_id','lyrics'
+      ]
+    });
+  }
   
 }
 
